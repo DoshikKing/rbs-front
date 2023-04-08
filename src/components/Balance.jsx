@@ -29,8 +29,8 @@ export default function Balance() {
             return(
                 <div className='card-item' key={i}>
                     <h4>{data.data[item].code} {data.data[item].paySystem}</h4>
-                    <h5>Остаток: {data.data[item].summ} ₽</h5>
-                    <h6> Срок: {data.data[item].statusTime}</h6>
+                    <h5>Остаток: {data.data[item].amount} ₽</h5>
+                    <h6> Статус: {data.data[item].status}</h6>
                 </div>
             )
         }
