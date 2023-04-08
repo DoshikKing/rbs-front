@@ -1,7 +1,7 @@
 import api from '../lib/Axios';
 
 export function getListOfCards() {
-    return api.get("/gat/cards");
+    return api.get("/get/cards");
 }
 
 export function getListOfAccounts() {
