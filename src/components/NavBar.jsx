@@ -18,12 +18,12 @@ function NavBar() {
                         </NavLink >
                     </li>
                     <li>
-                        <NavLink to="/history" >
+                        <NavLink to="/history">
                             История
                         </NavLink >
                     </li>
                     <li className='footer'>
-                        <a onClick={() => {void auth.signoutSilent().then(localStorage.removeItem('token'), window.location.replace('/')); auth.removeUser();} }>
+                        <a onClick={() => {void auth.signoutSilent().then(localStorage.clear(), window.location.replace('/')); auth.removeUser();} }>
                             Выйти
                         </a>
                     </li>

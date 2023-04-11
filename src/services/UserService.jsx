@@ -8,12 +8,16 @@ export function getListOfAccounts() {
     return api.get("/get/accounts");
 }
 
-export function getCardAbstract(path) {
-    return api.get("abstract/card/" + path);
+export function getCardAbstract(code) {
+    return api.get("get/card/abstract", {
+        code: code
+    });
 }
 
-export function getAccountAbstract(path) {
-    return api.get("abstract/account/" + path);
+export function getAccountAbstract(accountNumber) {
+    return api.post("get/account/abstract", {
+        code: accountNumber
+    });
 }
 
 export function executeTransaction(from, to, amount, comment, type){
@@ -32,5 +36,4 @@ export function executeTransaction(from, to, amount, comment, type){
             comment
         });
     }
-
 }

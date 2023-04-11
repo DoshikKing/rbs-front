@@ -38,16 +38,16 @@ export default function Balance() {
         refetchOnWindowFocus: false,
     })
 
-    if(cards_isFetching) {
+    if(cards_isFetching && accounts_isFetching) {
         return (<div>Обновляем...</div>)
     }   
 
-    if (cards_isLoading) {
+    if (cards_isLoading && accounts_isLoading) {
         return (<div>Загрузка...</div>)
     }
 
-    if (cards_isError) {
-        return(<div>Упс! {cards_error.message}</div>)
+    if (cards_isError && accounts_isError) {
+        return(<div>Упс!  Проблема получения карт! Причина: {cards_error.message}, Проблема получения счетов! Причина: {accounts_error.message}</div>)
     }
 
     const cards = Object.keys(cards_data.data).map((item, i) => {
@@ -63,7 +63,6 @@ export default function Balance() {
     })
 
     const accounts = Object.keys(accounts_data.data).map((item, i) => {
-        
         if (accounts_isFetched) {
             return(
                 <div className='card-item' key={i}>
@@ -76,7 +75,7 @@ export default function Balance() {
         }
     })
 
-    if (cards_isSuccess) {
+    if (cards_isSuccess && accounts_isSuccess) {
         return (
             <>
                 <div className='container'>

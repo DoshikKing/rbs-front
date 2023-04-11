@@ -19,7 +19,7 @@ function RouteConfig() {
         <>
             <NavBar />
             <Routes>
-                <Route exact path="/" element={<Welcome />} />
+                {/* <Route exact path="/" element={<Welcome />} /> */}
                 <Route exact path="/home" element={<Home />} />
                 <Route exact path="/services" element={<Services />} />
                 <Route exact path="/history" element={<History />} />
