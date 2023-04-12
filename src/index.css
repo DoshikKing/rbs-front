@@ -37,6 +37,12 @@ html,body{
   padding: 0.6em 1.2em;
 }
 
+@media (max-width: 500px) {
+  .card {
+    grid-template-columns: auto;
+  }
+}
+
 .card-item {}
 
 a {
@@ -122,10 +128,19 @@ button:hover {
   padding-top: 5vmax;
   padding-bottom: 5vmax;
 }
-
-@media (max-width: 500px) {
-  .card {
-    grid-template-columns: auto;
-  }
-}
 /* Services styles */
+
+/* History styles */
+.history-card {
+  display: grid;
+  place-items: center;
+  gap: 0px;
+  grid-template-columns: auto auto;
+}
+
+.card-item-history {
+  padding-top: 5vmax;
+  padding-bottom: 5vmax;
+}
+
+/* History styles */

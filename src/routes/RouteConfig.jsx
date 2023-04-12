@@ -5,6 +5,7 @@ import Home from "../pages/Home";
 import Services from "../pages/Services";
 import NavBar from "../components/NavBar";
 import History from "../pages/History";
+import Transfer from "../pages/Transfer"
 
 function RouteConfig() { 
     const auth = useAuth();
@@ -23,6 +24,7 @@ function RouteConfig() {
                 <Route exact path="/home" element={<Home />} />
                 <Route exact path="/services" element={<Services />} />
                 <Route exact path="/history" element={<History />} />
+                <Route exact path="/transfer" element={<Transfer />} />
                 <Route
                     path="*"
                     element={

@@ -19,7 +19,7 @@ function Services() {
                 <div className='container'>
                     <div className='card service-card'>
                         <div className='card-item card-item-service'>
-                            <NavLink to="/services" >
+                            <NavLink to="/transfer" >
                                 Перевести деньги
                             </NavLink>
                         </div>

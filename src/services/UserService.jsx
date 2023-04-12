@@ -1,38 +1,43 @@
 import api from '../lib/Axios';
 
 export function getListOfCards() {
-    return api.get("/get/cards");
+    return api.get("get/cards");
 }
 
 export function getListOfAccounts() {
-    return api.get("/get/accounts");
+    return api.get("get/accounts");
 }
 
-export function getCardAbstract(code) {
-    return api.get("get/card/abstract", {
-        code: code
+export function getCardAbstract(id) {
+    return api.post("get/card/abstract", {
+        id: id
     });
 }
 
-export function getAccountAbstract(accountNumber) {
+export function getAccountAbstract(id) {
     return api.post("get/account/abstract", {
-        code: accountNumber
+        id: id
     });
 }
 
-export function executeTransaction(from, to, amount, comment, type){
+export function executeTransaction(from, to, amount, comment, type, debitBank, creditBank){
     if (type === "card"){
-        return api.post("pay/with_card",{
-            debit_id: from,
-            credit_id: to,
+        return api.post("transfer/from/account/to/card",{
+            debit: from,
+            credit: to,
             amount,
+            debitBank,
+            creditBank,
             comment
         });
-    } else {
-        return api.post("pay/with_account",{
-            debit_id: from,
-            credit_id: to,
+    }
+    if(type === "account") {
+        return api.post("transfer/from/account/to/account",{
+            debit: from,
+            credit: to,
             amount,
+            debitBank,
+            creditBank,
             comment
         });
     }
