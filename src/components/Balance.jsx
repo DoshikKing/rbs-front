@@ -69,7 +69,9 @@ export default function Balance() {
                     <h4>{accounts_data.data[item].accountNumber}</h4>
                     <h5>Остаток: {accounts_data.data[item].balance} ₽</h5>
                     <h6> Статус: {accounts_data.data[item].status}</h6>
-                    {cards.find(card => card.props.data == 1)}
+                    {cards.find((card) => {if (card.props.data == accounts_data.data[item].id) {
+                        return card
+                    }})}
                 </div>
             )
         }

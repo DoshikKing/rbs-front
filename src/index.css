@@ -144,3 +144,7 @@ button:hover {
 }
 
 /* History styles */
+
+.hiden {
+  display: none;
+}
