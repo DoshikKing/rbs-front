@@ -6,6 +6,7 @@ import Services from "../pages/Services";
 import NavBar from "../components/NavBar";
 import History from "../pages/History";
 import Transfer from "../pages/Transfer"
+import Billing from "../pages/Billing"
 
 function RouteConfig() { 
     const auth = useAuth();
@@ -25,6 +26,7 @@ function RouteConfig() {
                 <Route exact path="/services" element={<Services />} />
                 <Route exact path="/history" element={<History />} />
                 <Route exact path="/transfer" element={<Transfer />} />
+                <Route exact path="/billings" element={<Billing />} />
                 <Route
                     path="*"
                     element={

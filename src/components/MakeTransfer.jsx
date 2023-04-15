@@ -1,6 +1,7 @@
-import { useQuery, useQueryClient } from 'react-query';
-import { executeTransaction } from '../services/UserService'
-import { useEffect, useState } from 'react';
+import { redirect } from "react-router-dom";
+import { useQueryClient } from 'react-query';
+import { transferFromAccountToAccount, transferFromAccountToCard, transferFromCardToAccount, transferFromCardToCard } from '../services/UserService'
+import { useState } from 'react';
 import Select from 'react-select';
 
 export default function Abstract() {
@@ -28,11 +29,18 @@ export default function Abstract() {
 
     const handleSetSelectedOption_s1 = (e) => {
         setSelectedOption_s1(e)
-        setFiltered2(cards_and_accounts_sl2.filter(function(x) { 
-            if (e !== null ) {
+        setFiltered2(cards_and_accounts_sl2.filter(function (x) {
+            if (e !== null) {
                 if (x.label !== e.label) {
-                    if (e.account_id !== x.id ){
-                        return x
+                    if (e.data == "card") {
+                        if (e.account_id !== x.id) {
+                            return x
+                        }
+                    }
+                    if (e.data == "account") {
+                        if (x.account_id !== e.id) {
+                            return x
+                        }
                     }
                 }
             }
@@ -44,8 +52,15 @@ export default function Abstract() {
         setFiltered1(cards_and_accounts_sl1.filter(function(x) { 
             if (e !== null) {
                 if (x.label !== e.label) {
-                    if (e.account_id !== x.id){
-                        return x
+                    if (e.data == "card") {
+                        if (e.account_id !== x.id) {
+                            return x
+                        }
+                    }
+                    if (e.data == "account") {
+                        if (x.account_id !== e.id) {
+                            return x
+                        }
                     }
                 }
             }
@@ -60,13 +75,32 @@ export default function Abstract() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const d = selectedOption_s1.label;
-        const c = selectedOption_s2.label;
-        
-        if (c.length === 16) {
-            executeTransaction(d, c, amount, comment, "card", "LOCAL", "LOCAL").then(response => {return setResponse(response)});
-        } else {
-            executeTransaction(d, c, amount, comment, "account", "LOCAL", "LOCAL").then(response => {return setResponse(response)});
+        const debit = selectedOption_s1;
+        const credit = selectedOption_s2;
+
+        switch (debit.data) {
+            case "account":
+                if (credit.data === "card") {
+                    transferFromAccountToCard(debit.value, credit.value, amount, comment, "LOCAL", "LOCAL")
+                    redirect("/home")
+                }
+                if (credit.data === "account") {
+                    transferFromAccountToAccount(debit.value, credit.value, amount, comment, "LOCAL", "LOCAL")
+                    redirect("/home")
+                }
+                break;
+            case "card":
+                if (credit.data === "card") {
+                    transferFromCardToCard(debit.value, credit.value, amount, comment, "LOCAL", "LOCAL")
+                    redirect("/home")
+                }
+                if (credit.data === "account") {
+                    transferFromCardToAccount(debit.value, credit.value, amount, comment, "LOCAL", "LOCAL")
+                    redirect("/home")
+                }
+                break;
+            default:
+                break;
         }
     }
 

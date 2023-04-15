@@ -24,18 +24,8 @@ function Services() {
                             </NavLink>
                         </div>
                         <div className='card-item card-item-service'>
-                            <NavLink to="/services" >
-                                Оплатить сотовый
-                            </NavLink>
-                        </div>
-                        <div className='card-item card-item-service'>
-                            <NavLink to="/services" >
-                                Placeholder
-                            </NavLink>
-                        </div>
-                        <div className='card-item card-item-service'>
-                            <NavLink to="/services" >
-                                Placeholder
+                            <NavLink to="/billings" >
+                                Список выставленных счетов
                             </NavLink>
                         </div>
                     </div>
