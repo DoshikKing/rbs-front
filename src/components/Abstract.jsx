@@ -64,7 +64,7 @@ export default function Abstract() {
                             placeholder={"Выбирите вариант..."}
                         />
                     </label>
-                    <button type="submit">Submit</button>
+                    <button type="submit">Получить</button>
                 </form>
                 {trans}
             </div>
